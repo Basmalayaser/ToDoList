@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+    --color-mainColor-100:#ff2c1f;
+
+}
+  @layer components {
+       
+
+    }
+    @layer base {
+        * {
+          @apply list-none no-underline scroll-pt-8;
+        }
+    }
+    @layer utilities {
+       
+      }
+
+
+   
