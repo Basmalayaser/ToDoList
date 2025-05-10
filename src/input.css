@@ -1,8 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-    --color-mainColor-100:#ff2c1f;
-
 }
   @layer components {
        

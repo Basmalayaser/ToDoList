@@ -3,6 +3,7 @@ let taskInput = document.querySelector('#taskInput');
 let addTaskBtn = document.querySelector('#addTaskBtn');
 let inputWarning = document.querySelector('#inputWarning');
 let ulList = document.querySelector('#ulList'); 
+let clearList =document.querySelector("#clearList")
 
 let counter ;
 let taskList ;
@@ -25,6 +26,7 @@ function getDataFromStorage(){
         counter=data.length
         taskList=data
         displayTasks(data)
+        clearList.classList.remove("hidden")
     }else{
         taskList = [];
         counter=0;
@@ -55,6 +57,7 @@ function addTask() {
         displayTasks(taskList);
         setTaskToStorage(taskList);
         startInterval(); 
+        clearList.classList.remove("hidden")
     }
 }
 
@@ -89,6 +92,10 @@ function validateTaskName() {
 
 // Delete task from array
 function deleteTask(id) {
+    console.log(taskList.length)
+    if(taskList.length-1 == 0){
+        clearList.classList.add("hidden")
+    }                      
     taskList.splice(id, 1);
     displayTasks(taskList);
     setTaskToStorage(taskList)
@@ -117,6 +124,19 @@ function startInterval() {
     }
 }
 
+// Delete All task List 
+
+clearList.addEventListener('click',()=>{
+    clearAllList()
+})
+
+function clearAllList(){
+    counter=0;
+    taskList=[];
+    ulList.innerHTML=""
+    localStorage.clear()
+    clearList.classList.add("hidden")
+}
 
 function setTaskToStorage(taskList){
     localStorage.setItem("taskList",JSON.stringify(taskList))
